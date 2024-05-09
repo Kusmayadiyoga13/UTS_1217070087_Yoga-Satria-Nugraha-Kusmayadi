@@ -1,0 +1,25 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+image = cv2.imread('kucing.jpg')
+hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+h, s, v = cv2.split(hsv_image)
+plt.figure(figsize=(10, 5))
+plt.subplot(1, 3, 1)
+hist_red = cv2.calcHist([image], [0], None, [256], [0, 256])
+plt.plot(hist_red, color='red')
+plt.title('Red Channel Histogram')
+plt.xlim([0, 256])
+plt.subplot(1, 3, 2)
+hist_green = cv2.calcHist([image], [1], None, [256], [0, 256])
+plt.plot(hist_green, color='green')
+plt.title('Green Channel Histogram')
+plt.xlim([0, 256])
+plt.subplot(1, 3, 3)
+hist_blue = cv2.calcHist([image], [2], None, [256], [0, 256])
+plt.plot(hist_blue, color='blue')
+plt.title('Blue Channel Histogram')
+plt.xlim([0, 256])
+plt.tight_layout()
+plt.show()
